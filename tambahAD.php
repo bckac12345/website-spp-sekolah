@@ -43,18 +43,9 @@ include 'header.php';
  	$p    = hash('sha1', $pass);
  	$nama = $_POST['nama'];
 
- 	$stmt = $konek->prepare("INSERT INTO admin (username,password,namalengkap) VALUES(?,?,?)");
- 	$stmt->bindParam(1, $username);
- 	$stmt->bindParam(2, $password);
- 	$stmt->bindParam(3, $namalengkap);
- 	// masuakn nilai
- 	$username = $user;
- 	$password = $p;
- 	$namalengkap     = $nama;
- 	$stmt->execute();
+ 	$exec = mysqli_query($konek,"INSERT INTO admin(username,password,namalengkap) Values ('$user','$p','$nama')");
 
-
- 	if( $stmt ){
+ 	if( $exec ){
  		echo "
  		<script>
  		alert('data admin berhasil ditambahkan');
